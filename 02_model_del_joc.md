@@ -10,9 +10,9 @@ El sistema de **Blokic** es divideix en tres mòduls que col·laboren per manten
 ---
 
 ## 2. Entitats identificades
-1.  **Board (Taulell):** L'entitat que conté l'estat actual de la graella.
-2.  **Piece (Peça):** Representa cada una de les formes que el jugador pot col·locar.
-3.  **GameManager:** L'entitat que orquestra el temps, la puntuació i les regles de negoci.
+1. **Board (Taulell):** L'entitat que conté l'estat actual de la graella.
+2. **Piece (Peça):** Representa cada una de les formes que el jugador pot col·locar.
+3. **GameManager:** L'entitat que orquestra el temps, la puntuació i les regles de negoci.
 
 ---
 
@@ -44,7 +44,7 @@ El sistema de **Blokic** es divideix en tres mòduls que col·laboren per manten
 ---
 
 ## 5. Explicació del diagrama de classes
-![Diagrama de Classes](diagrames/diagrama_classes.png)
+[ESCRIU AQUÍ L'ENLLAÇ O REFERÈNCIA A LA IMATGE DEL TEU DIAGRAMA]
 
 * **Què representa:** L'arquitectura estàtica del joc. Mostra com el `GameManager` actua com a cervell central que té una relació de possessió sobre el `Board` i una llista de `Piece`.
 * **Organització:** S'ha organitzat per separar la representació visual (Peça) de la lògica de dades (Board). Això permet que, si en un futur vols afegir rotació, només hagis de modificar la classe `Piece` sense afectar el funcionament de la graella.
@@ -52,7 +52,7 @@ El sistema de **Blokic** es divideix en tres mòduls que col·laboren per manten
 ---
 
 ## 6. Explicació del diagrama de comportament
-![Diagrama de Comportament](diagrames/diagrama_comportament.png)
+[ESCRIU AQUÍ L'ENLLAÇ O REFERÈNCIA A LA IMATGE DEL TEU DIAGRAMA DE COMPORTAMENT]
 
 * **Tipus triat:** Diagrama d'Activitat (Game Loop).
 * **Representació:** El diagrama mostra el cicle de vida d'un moviment: des que el jugador selecciona una peça, passant per la comprovació de col·lisió, fins a l'actualització del taulell i la recuperació de temps en el mode "Panic".
