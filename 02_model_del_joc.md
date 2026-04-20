@@ -44,7 +44,8 @@ El sistema de **Blokic** es divideix en tres mòduls que col·laboren per manten
 ---
 
 ## 5. Explicació del diagrama de classes
-[ESCRIU AQUÍ L'ENLLAÇ O REFERÈNCIA A LA IMATGE DEL TEU DIAGRAMA]
+
+<img width="211" height="337" alt="image" src="https://github.com/user-attachments/assets/c7feb2e5-7623-42aa-8c66-354930762267" />
 
 * **Què representa:** L'arquitectura estàtica del joc. Mostra com el `GameManager` actua com a cervell central que té una relació de possessió sobre el `Board` i una llista de `Piece`.
 * **Organització:** S'ha organitzat per separar la representació visual (Peça) de la lògica de dades (Board). Això permet que, si en un futur vols afegir rotació, només hagis de modificar la classe `Piece` sense afectar el funcionament de la graella.
@@ -52,7 +53,27 @@ El sistema de **Blokic** es divideix en tres mòduls que col·laboren per manten
 ---
 
 ## 6. Explicació del diagrama de comportament
-[ESCRIU AQUÍ L'ENLLAÇ O REFERÈNCIA A LA IMATGE DEL TEU DIAGRAMA DE COMPORTAMENT]
+
+graph TD
+    A([Inicio del Turno]) --> B[Jugador arrastra Pieza]
+    B --> C[Jugador suelta Pieza]
+    C --> D{¿Encaja en<br/>el Board?}
+    
+    D -- NO --> E[Vuelve a posición original]
+    E --> B
+    
+    D -- SÍ --> F[Fijar en Matriz]
+    F --> G[Limpiar Líneas]
+    G --> H[Sumar Puntos / Tiempo]
+    H --> I{¿Quedan Piezas?}
+    
+    I -- NO --> J[Spawn 3 nuevas piezas]
+    J --> K
+    I -- SÍ --> K[Comprobar Bloqueo]
+    
+    K --> L{¿Hay movimientos?}
+    L -- SÍ --> M([Fin del Turno])
+    L -- NO --> N[Game Over]
 
 * **Tipus triat:** Diagrama d'Activitat (Game Loop).
 * **Representació:** El diagrama mostra el cicle de vida d'un moviment: des que el jugador selecciona una peça, passant per la comprovació de col·lisió, fins a l'actualització del taulell i la recuperació de temps en el mode "Panic".
