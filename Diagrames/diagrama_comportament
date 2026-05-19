@@ -1,0 +1,36 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e1f5fe', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#fff'}}}%%
+graph TD
+    %% Nodos de inicio y fin
+    StartNode((Inicio del Turno))
+    EndNode((Fin del Turno))
+
+    %% Proceso principal
+    StartNode --> PlayerDrags[Jugador arrastra una Pieza]
+    PlayerDrags --> PlayerDrops[Jugador suelta la Pieza]
+
+    %% Decisión de validación
+    PlayerDrops --> DecisionFit{¿La pieza encaja en\nla posición? <br/>(Board.checkFit)}
+
+    %% Rama NO encaja
+    DecisionFit -- NO --> ReturnPos[La pieza vuelve a su<br/>posición original]
+    ReturnPos --> PlayerDrags
+
+    %% Rama SÍ encaja
+    DecisionFit -- SÍ --> PlacePiece[Fijar pieza en la matriz<br/>(isPlaced = true)]
+    PlacePiece --> ClearLines[Comprobar y vaciar líneas<br/>(Board.clearLines)]
+    ClearLines --> UpdateScore[Actualizar Puntuación/Tiempo<br/>(GameManager.updateScore)]
+    UpdateScore --> CheckNewP[¿Quedan piezas disponibles?]
+
+    %% Gestión de nuevas piezas
+    CheckNewP -- NO --> SpawnP[Generar 3 nuevas piezas<br/>(GameManager.spawnPieces)]
+    SpawnP --> CheckLose
+    CheckNewP -- SÍ --> CheckLose
+
+    %% Comprobación de Game Over
+    CheckLose[Comprobar si hay movimientos posibles<br/>(GameManager.checkLoseCondition)]
+    CheckLose --> DecisionOver{¿Bloqueo total?}
+
+    %% Resultado final
+    DecisionOver -- NO --> EndNode
+    DecisionOver -- SÍ --> TriggerGameOver[Activar estado Game Over]
+    TriggerGameOver --> EndNode

@@ -1,0 +1,32 @@
+classDiagram
+    class GameManager {
+        +int score
+        +float timer
+        +String gameMode
+        +Bool isGameOver
+        +spawnPieces()
+        +updateScore(int lines)
+        +checkLoseCondition() Bool
+    }
+
+    class Board {
+        +Array2D matrix
+        +int cellSize
+        +Color gridColor
+        +checkFit(Piece piece, int x, int y) Bool
+        +clearLines() int
+    }
+
+    class Piece {
+        +Matrix shape
+        +String color
+        +Bool isPlaced
+        +Vector2 originalPos
+        +drag(Vector2 position)
+        +snapToGrid() Vector2
+    }
+
+    %% Relaciones
+    GameManager "1" --* "1" Board : posee y controla
+    GameManager "1" --* "0..3" Piece : gestiona activamente
+    Board "1" ..> "0..*" Piece : valida colocación
