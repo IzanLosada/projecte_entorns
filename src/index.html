@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BLOKIC - Juego de puzzle lógico con dos modos de juego">
+    <title>BLOKIC - Puzzle Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gradient-dark">
+    <!-- PANTALLA DE INICIO -->
+    <div id="startScreen" class="screen active">
+        <div class="start-container">
+            <div class="start-content">
+                <div class="start-header">
+                    <h1 class="game-title-large">BLOKIC</h1>
+                    <p class="game-subtitle">Logic Puzzle Game</p>
+                    <div class="title-decoration"></div>
+                </div>
+                
+                <div class="start-buttons">
+                    <button id="btnStartScreen" class="btn btn-large btn-primary">
+                        <span class="btn-text">JUGAR</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                    <button id="btnSettingsScreen" class="btn btn-large btn-secondary">
+                        <span class="btn-text">AJUSTES</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                </div>
+
+                <div class="start-footer">
+                    <p class="version-text">v1.0 - Retro Edition</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE AJUSTES -->
+    <div id="settingsScreen" class="screen">
+        <div class="settings-container">
+            <div class="settings-header">
+                <button id="btnBackFromSettings" class="btn-close">×</button>
+                <h2>AJUSTES</h2>
+            </div>
+
+            <div class="settings-content">
+                <!-- Volumen -->
+                <div class="setting-group">
+                    <label class="setting-label">🔊 VOLUMEN MÚSICA</label>
+                    <div class="slider-container">
+                        <input type="range" id="musicVolume" class="slider" min="0" max="100" value="70">
+                        <span class="slider-value" id="musicVolumeValue">70%</span>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <label class="setting-label">🔔 VOLUMEN EFECTOS</label>
+                    <div class="slider-container">
+                        <input type="range" id="sfxVolume" class="slider" min="0" max="100" value="70">
+                        <span class="slider-value" id="sfxVolumeValue">70%</span>
+                    </div>
+                </div>
+
+                <!-- Fondos -->
+                <div class="setting-group">
+                    <label class="setting-label">🎨 FONDO</label>
+                    <div class="backgrounds-grid">
+                        <button class="bg-option active" data-bg="gradient-dark" title="Degradado Oscuro">
+                            <span class="bg-preview" style="background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);"></span>
+                            <span class="bg-name">Oscuro</span>
+                        </button>
+                        <button class="bg-option" data-bg="neon-grid" title="Neon Grid">
+                            <span class="bg-preview" style="background: #0a0a15; background-image: linear-gradient(#1a1a3f 1px, transparent 1px), linear-gradient(90deg, #1a1a3f 1px, transparent 1px); background-size: 40px 40px;"></span>
+                            <span class="bg-name">Neon</span>
+                        </button>
+                        <button class="bg-option" data-bg="purple-haze" title="Purple Haze">
+                            <span class="bg-preview" style="background: linear-gradient(135deg, #2d0a4e 0%, #1a0a2e 100%);"></span>
+                            <span class="bg-name">Púrpura</span>
+                        </button>
+                        <button class="bg-option" data-bg="cyan-night" title="Cyan Night">
+                            <span class="bg-preview" style="background: linear-gradient(135deg, #0a2a3f 0%, #0f1a2e 100%);"></span>
+                            <span class="bg-name">Cian</span>
+                        </button>
+                        <button class="bg-option" data-bg="matrix" title="Matrix">
+                            <span class="bg-preview" style="background: #000; background-image: repeating-linear-gradient(0deg, #00FF41 0px, transparent 1px, transparent 2px, #00FF41 3px);"></span>
+                            <span class="bg-name">Matrix</span>
+                        </button>
+                        <button class="bg-option" data-bg="fire" title="Fire">
+                            <span class="bg-preview" style="background: linear-gradient(135deg, #4a0000 0%, #1a0000 100%);"></span>
+                            <span class="bg-name">Fuego</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Opciones -->
+                <div class="setting-group">
+                    <label class="setting-label">⚙️ OPCIONES</label>
+                    <div class="option-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableMusic" class="checkbox" checked>
+                            <span>Activar Música</span>
+                        </label>
+                    </div>
+                    <div class="option-item">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="enableSFX" class="checkbox" checked>
+                            <span>Activar Efectos de Sonido</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE SELECCIÓN DE MODO -->
+    <div id="modeScreen" class="screen">
+        <div class="mode-container">
+            <button class="btn-close-top" id="btnBackFromMode">×</button>
+            
+            <div class="mode-header">
+                <h2>SELECCIONA MODO</h2>
+            </div>
+
+            <div class="modes-grid">
+                <div class="mode-card mode-card-zen">
+                    <div class="mode-icon">☮️</div>
+                    <h3>CHILL MODE</h3>
+                    <p class="mode-description">Juega sin límite de tiempo. Disfruta del juego sin presión.</p>
+                    <button class="btn btn-primary" id="btnSelectZen">SELECCIONAR</button>
+                </div>
+
+                <div class="mode-card mode-card-panic">
+                    <div class="mode-icon">⚡</div>
+                    <h3>HARD MODE</h3>
+                    <p class="mode-description">3 minutos de acción. El tiempo baja y se acelera.</p>
+                    <button class="btn btn-primary" id="btnSelectPanic">SELECCIONAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA DE JUEGO -->
+    <div id="gameScreen" class="screen">
+        <div class="container">
+            <!-- Panel de Control -->
+            <div class="control-panel">
+                <div class="header">
+                    <h1 class="game-title">BLOKIC</h1>
+                    <p class="subtitle">Logic Puzzle Game</p>
+                </div>
+
+                <!-- Información del Juego -->
+                <div class="info-panel">
+                    <div class="stat-box">
+                        <span class="stat-label">PUNTUACIÓN</span>
+                        <span class="stat-value" id="score">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">LÍNEAS</span>
+                        <span class="stat-value" id="lines">0</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">COMBO</span>
+                        <span class="stat-value" id="combo">x1</span>
+                    </div>
+                    <div class="stat-box" id="timerBox">
+                        <span class="stat-label">TIEMPO</span>
+                        <span class="stat-value" id="timer">03:00</span>
+                    </div>
+                </div>
+
+                <!-- Estado del Juego -->
+                <div class="status-box" id="statusBox">
+                    <p id="statusText">Preparándose...</p>
+                </div>
+
+                <!-- Proximas Piezas -->
+                <div class="next-pieces-panel">
+                    <div class="panel-title-row">
+                        <h3>PRÓXIMAS</h3>
+                        <span class="panel-chip" id="batchInfo">3 PIEZAS</span>
+                    </div>
+                    <div id="nextPiecesContainer" class="next-pieces-container"></div>
+                </div>
+
+                <!-- Botones de Control -->
+                <div class="button-group">
+                    <button id="btnPause" class="btn btn-primary">PAUSAR</button>
+                    <button id="btnMenuFromGame" class="btn btn-secondary">MENÚ</button>
+                </div>
+
+                <!-- Instrucciones -->
+                <div class="instructions">
+                    <h4>CONTROLES</h4>
+                    <p>🖱️ Arrastra piezas al tablero</p>
+                    <p>⬜ Completa filas y columnas</p>
+                    <p>📦 Coloca las 3 piezas para nueva remesa</p>
+                </div>
+            </div>
+
+            <!-- Área de Juego -->
+            <div class="game-area">
+                <div id="gameContainer">
+                    <canvas id="gameCanvas" width="560" height="560"></canvas>
+                </div>
+
+                <!-- Piezas Disponibles -->
+                <div class="pieces-reserve">
+                    <div class="panel-title-row">
+                        <h3>PIEZAS DISPONIBLES</h3>
+                    </div>
+                    <div id="piecesContainer" class="pieces-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="gameOverModal" class="modal">
+            <div class="modal-content modal-game-over">
+                <h2 id="gameOverTitle">GAME OVER</h2>
+                <div class="game-over-animation"></div>
+                <div class="game-over-stats">
+                    <div class="stat-row">
+                        <span>Puntuación Final:</span>
+                        <span class="stat-highlight" id="finalScore">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Líneas Completadas:</span>
+                        <span class="stat-highlight" id="finalLines">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Tiempo Jugado:</span>
+                        <span class="stat-highlight" id="finalTime">0:00</span>
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button id="btnPlayAgain" class="btn btn-primary">JUGAR DE NUEVO</button>
+                    <button id="btnBackToMenu" class="btn btn-secondary">MENÚ PRINCIPAL</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="pauseModal" class="modal">
+            <div class="modal-content modal-pause">
+                <div class="pause-icon">⏸</div>
+                <h2>PAUSADO</h2>
+                <p class="pause-text">El juego está en pausa</p>
+                <div class="modal-buttons">
+                    <button id="btnResume" class="btn btn-primary">REANUDAR</button>
+                    <button id="btnBackToMenuFromPause" class="btn btn-secondary">MENÚ PRINCIPAL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/audio.js"></script>
+    <script src="js/piece.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
