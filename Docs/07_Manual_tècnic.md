@@ -131,7 +131,8 @@ getCompleteLines() {
     }
     return { rows, cols };
 }
-5. Gestión del Estado de Juego y Ciclo de VidaEl ciclo de ejecución global es gobernado por una máquina de estados finitos (FSM) implícita en la propiedad currentScreen y las variables de control de flujo booleanas de GameManager:               ┌───────────────┐
+5. Gestión del Estado de Juego y Ciclo de VidaEl ciclo de ejecución global es gobernado por una máquina de estados finitos (FSM) implícita en la propiedad currentScreen y las variables de control de flujo booleanas de GameManager:
+               ┌───────────────┐
                │  START SCREEN │
                └───────┬───────┘
                        │ Jugar()
